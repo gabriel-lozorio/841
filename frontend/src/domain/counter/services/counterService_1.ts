@@ -17,7 +17,7 @@ export const counterService = {
    */
   getSequence: async (): Promise<CountSequence> => {
     const response = await api.get<ApiResponse<CountSequence>>('/external/counter');
-    return response.data;
+    return { numbers: response.data.data.numbers || [] };
   },
 
   /**
@@ -30,6 +30,12 @@ export const counterService = {
     const response = await api.post<ApiResponse<CountingStatus>>('/external/counter/control', {
       action,
     });
-    return response.data;
+    const data = response.data.data;
+    return {
+      state: data.state,
+      currentNumber: data.currentNumber,
+      message: data.message,
+      buttonLabel: data.buttonLabel
+    };
   },
 };

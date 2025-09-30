@@ -13,7 +13,7 @@ interface CounterDisplayProps {
  * @type ui-component
  * @category display
  */
-export const CounterDisplay = ({ currentNumber, message, state }: CounterDisplayProps) => {
+export const CounterDisplay = ({ currentNumber, message }: CounterDisplayProps) => {
   // Determine what to display based on state and available data
   const displayContent = () => {
     if (message) {

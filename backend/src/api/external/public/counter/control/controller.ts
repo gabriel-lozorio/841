@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { successResponse } from '../../../../../utils/responseFormatter';
+import { successResponse, errorResponse } from '../../../../../utils/responseFormatter';
 import { counterControlService } from '../../../../../services/counter/control';
 import { z } from 'zod';
 
@@ -22,7 +22,7 @@ export async function postHandler(req: Request, res: Response, next: NextFunctio
     const validationResult = schema.safeParse(req.body);
     
     if (!validationResult.success) {
-      return res.status(400).json({
+      res.status(400).json({
         success: false,
         error: {
           message: 'Invalid request parameters',
@@ -30,6 +30,7 @@ export async function postHandler(req: Request, res: Response, next: NextFunctio
         },
         timestamp: new Date().toISOString()
       });
+      return;
     }
     
     const { action } = validationResult.data;

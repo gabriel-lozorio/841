@@ -23,7 +23,7 @@ export const useCounterControl = (): UseCounterControlReturn => {
   const { mutateAsync: controlCounter, isPending: isLoading } = useMutation({
     mutationFn: (action: 'start' | 'restart') => counterService.controlCounter(action),
     onSuccess: (newStatus) => {
-      setStatus(newStatus);
+      setStatus(newStatus as CountingStatus);
       queryClient.invalidateQueries({ queryKey: ['counter-status'] });
     },
   });

@@ -1,6 +1,7 @@
 import { api } from '@/core/lib/api';
 import { ApiResponse } from '@/core/types';
 import { CountSequence } from '../types';
+import { CountingStatus } from '../hooks/useCounterControl/types';
 
 /**
  * @service counterService
@@ -16,6 +17,19 @@ export const counterService = {
    */
   getSequence: async (): Promise<CountSequence> => {
     const response = await api.get<ApiResponse<CountSequence>>('/external/counter');
-    return response.data;
+    return { numbers: response.data.data.numbers || [] };
+  },
+
+  /**
+   * @method controlCounter
+   * @summary Controls the counting process (start or restart).
+   * @param {string} action - The action to perform ('start' or 'restart').
+   * @returns {Promise<CountingStatus>} A promise that resolves to the updated counting status.
+   */
+  controlCounter: async (action: 'start' | 'restart'): Promise<CountingStatus> => {
+    const response = await api.post<ApiResponse<CountingStatus>>('/external/counter/control', {
+      action,
+    });
+    return response.data.data;
   },
 };

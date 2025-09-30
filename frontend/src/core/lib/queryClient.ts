@@ -12,12 +12,12 @@ export const queryClient = new QueryClient({
       staleTime: 1000 * 60 * 5, // 5 minutes
       retry: (failureCount, error: any) => {
         // Don't retry on 4xx client errors
-        if (error.response?.status >= 400 && error.response?.status < 500) {
+        if (error?.response?.status >= 400 && error?.response?.status < 500) {
           return false;
         }
         return failureCount < 3;
       },
-      refetchOnWindowFocus: import.meta.env.PROD, // Only refetch on focus in production
+      refetchOnWindowFocus: process.env.NODE_ENV === 'production', // Only refetch on focus in production
     },
   },
 });

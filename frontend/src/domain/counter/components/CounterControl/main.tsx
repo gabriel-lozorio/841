@@ -15,7 +15,7 @@ interface CounterControlProps {
  * @type ui-component
  * @category control
  */
-export const CounterControl = ({ buttonLabel, state, isLoading, onAction }: CounterControlProps) => {
+export const CounterControl = ({ buttonLabel, isLoading, onAction }: CounterControlProps) => {
   return (
     <div className="mt-8 flex justify-center">
       <Button 

@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useCounterControl } from '@/domain/counter/hooks/useCounterControl';
 import { CounterDisplay } from '@/domain/counter/components/CounterDisplay';
 import { CounterControl } from '@/domain/counter/components/CounterControl';
