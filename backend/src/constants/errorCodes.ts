@@ -1,0 +1,28 @@
+/**
+ * @summary
+ * Error codes used throughout the application
+ */
+export enum ErrorCode {
+  // General errors (1000-1999)
+  INTERNAL_SERVER_ERROR = 1000,
+  VALIDATION_ERROR = 1001,
+  NOT_FOUND = 1002,
+  UNAUTHORIZED = 1003,
+  FORBIDDEN = 1004,
+  BAD_REQUEST = 1005,
+  
+  // Database errors (2000-2999)
+  DATABASE_CONNECTION_ERROR = 2000,
+  DATABASE_QUERY_ERROR = 2001,
+  DATABASE_CONSTRAINT_ERROR = 2002,
+  
+  // Authentication errors (3000-3999)
+  INVALID_CREDENTIALS = 3000,
+  TOKEN_EXPIRED = 3001,
+  INVALID_TOKEN = 3002,
+  
+  // Business logic errors (4000-4999)
+  BUSINESS_RULE_VIOLATION = 4000,
+  RESOURCE_ALREADY_EXISTS = 4001,
+  RESOURCE_LIMIT_REACHED = 4002
+}
